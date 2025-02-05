@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_pet_app/constants/color_class.dart';
 import 'package:mobile_pet_app/provider/pet_provider.dart';
-import 'package:mobile_pet_app/screens/pet_list_screen/pet_list_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'screens/splash_screen/splash_screen.dart';
+
 void main() {
- try{
-   WidgetsFlutterBinding.ensureInitialized(); 
-   runApp(const MyApp());
- }catch(e){
-  debugPrint('---- $e');
- }
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    runApp(const MyApp());
+  } catch (e) {
+    debugPrint('---- $e');
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -20,16 +22,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-         ChangeNotifierProvider(create: (_) => PetDataProvider()),
-        ],
+        ChangeNotifierProvider(create: (_) => PetDataProvider()),
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: const PetListScreen(),
+        theme: AppColors.getLightTheme(),
+        darkTheme: AppColors.getDarkTheme(),
+        home: const SplashScreen(),
       ),
     );
   }
